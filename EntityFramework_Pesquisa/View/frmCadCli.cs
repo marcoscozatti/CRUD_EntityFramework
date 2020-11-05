@@ -88,7 +88,7 @@ namespace EntityFramework_Pesquisa
 			limpacampos();
 			Atualizadg();
 		}
-			
+
 		private void btnSalvar_Click(object sender, EventArgs e)
 		{
 
@@ -201,26 +201,20 @@ namespace EntityFramework_Pesquisa
 		private void txtNome_TextChanged(object sender, EventArgs e)
 		{
 
-			if (txtNome.Text== "" && txtID.Text=="")
+			if (txtNome.Text == "" && txtID.Text == "")
 			{
 				Atualizadg();
 			}
 			try
 			{
 
-				using (var tb = new Controle())
+				using (var tb = new Controle())  //aqui você faz a pesquisa digitando o nome do cliente
 				{
-				    var resultado = tb.ObjetoCadCli.Where(y => y.Nome == txtNome.Text);
+					var resultado = tb.ObjetoCadCli.Where(y => y.Nome == txtNome.Text);
 
 					dg.DataSource = null;
 					dg.DataSource = resultado.ToList();
 				}
-
-				//using (var tb = new Controle())
-				//{
-				//	dg.DataSource = null;
-				//	dg.DataSource = tb.ObjetoCadCli.ToList();
-				//}
 
 			}
 			catch (Exception ex)
